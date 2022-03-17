@@ -1,0 +1,10 @@
+{
+    "type": "mssql",
+    "host": "192.168.97.4",
+    "port": 0,
+    "username": "sa",
+    "password": "",
+    "database": "",
+    "entities": ["./src/models/**/*.ts"],
+    "synchronize": true
+}

@@ -1,0 +1,21 @@
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { CatPlantilla } from './plantilla';
+import { CatCampanias } from './campanias';
+
+@Entity()
+export class CatProducto{
+    @PrimaryGeneratedColumn('increment')
+    idProducto:number;
+
+    @OneToOne(() => CatPlantilla)
+    @JoinColumn()
+    plantilla:CatPlantilla;
+
+    @OneToMany(() => CatCampanias, campania => campania.Producto)
+    Campania:CatCampanias[];
+    @Column({type:'varchar', length:255, nullable:false})
+    NombreProducto:string;
+
+    @Column({type:'varchar', length:255, nullable:false})
+    SKU:string;
+}
