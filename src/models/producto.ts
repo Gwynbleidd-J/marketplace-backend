@@ -7,12 +7,13 @@ export class CatProducto{
     @PrimaryGeneratedColumn('increment')
     idProducto:number;
 
-    @OneToOne(() => CatPlantilla)
-    @JoinColumn()
+    @OneToOne(() => CatPlantilla,{nullable:false, eager:true})
+    @JoinColumn({name:'idPlantilla', referencedColumnName:'idPlantilla'})
     plantilla:CatPlantilla;
 
     @OneToMany(() => CatCampanias, campania => campania.Producto)
     Campania:CatCampanias[];
+
     @Column({type:'varchar', length:255, nullable:false})
     NombreProducto:string;
 

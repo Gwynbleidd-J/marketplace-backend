@@ -9,19 +9,20 @@ export class CatCampanias{
     @PrimaryGeneratedColumn('increment')
     idCampanias:number;
 
-    @OneToOne(() => CatEmpresa)
-    @JoinColumn()
+    @OneToOne(() => CatEmpresa, empresa => empresa.Campania, {nullable:false, eager:true})
+    @JoinColumn({name: 'idEmpresa', referencedColumnName:'idEmpresa'})
     Empresa:CatEmpresa;
 
-    @ManyToOne(() => CatProducto, producto => producto.Campania) 
+    @ManyToOne(() => CatProducto, producto => producto.Campania, {nullable:false, eager:true}) 
+    @JoinColumn({name:'idProducto', referencedColumnName:'idProducto'})
     Producto:CatProducto;
 
-    @OneToOne(() => CatEstatus)
-    @JoinColumn()
+    @OneToOne(() => CatEstatus, estatus => estatus.Campania, {nullable:false, eager:true}) 
+    @JoinColumn({name:'idEstatus', referencedColumnName:'idEstatus'})
     Estatus:CatEstatus;
 
-    @OneToOne(() => CatMedio)
-    @JoinColumn()
+    @OneToOne(() => CatMedio, medio => medio.Campania, {nullable:false, eager:true})
+    @JoinColumn({name: 'idMedio', referencedColumnName:'idMedio'})
     Medio:CatMedio;
     
     @Column({type:'varchar', length: 255, nullable:false})
@@ -36,12 +37,12 @@ export class CatCampanias{
     @Column({type:'varchar', length:50 , nullable:false})
     FechaFin:string;
 
-    @Column({type:'integer', nullable:false})
+    @Column({type:'int', nullable:false})
     SucursalesContratadas:number;
 
-    @Column({type:'integer', nullable:false})
+    @Column({type:'int', nullable:false})
     SegundosContratados:number;
 
-    @Column({type:'integer', nullable:false})
+    @Column({type:'int', nullable:false})
     PrecioUnitario:number;
 }

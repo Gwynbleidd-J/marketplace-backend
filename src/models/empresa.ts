@@ -10,23 +10,23 @@ export class CatEmpresa{
     @PrimaryGeneratedColumn('increment')
     idEmpresa:number;
     
-    @OneToOne(() => CatTipoEmpresa)
-    @JoinColumn()
+    @OneToOne(() => CatTipoEmpresa, {nullable:false, eager:true})
+    @JoinColumn({name:'idTipoEmpresa', referencedColumnName:'idTipoEmpresa'})
     TipoEmpresa:CatTipoEmpresa;
 
-    @OneToOne(() => CatDatosFiscales)
-    @JoinColumn()
+    @OneToOne(() => CatDatosFiscales, {nullable:false, eager:true})
+    @JoinColumn({name:'idDatosFiscales', referencedColumnName:'idDatosFiscales'})
     DatosFiscales:CatDatosFiscales;
 
-    @ManyToOne(() => CatDireccion, direccion => direccion.Empresa)
-    Direccion:CatDireccion;
-
-    @OneToOne(() => CatCampanias)
-    @JoinColumn()
+    @OneToOne(() => CatCampanias, campania => campania.Empresa, {nullable:false})
     Campania:CatCampanias;
 
+    @ManyToOne(() => CatDireccion, direccion => direccion.Empresa, {nullable:false})
+    @JoinColumn({name:'idDireccion', referencedColumnName:'idDireccion'})
+    Direccion:CatDireccion;
+    
     @OneToOne(() => LstUsuario)
-    @JoinColumn()
+    @JoinColumn({name:'idUsuario', referencedColumnName:'idUsuario'})
     Usuario:LstUsuario;
 
     @Column({type:'varchar', length:255, nullable:false})

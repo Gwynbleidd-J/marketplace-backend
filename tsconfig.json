@@ -1,15 +1,22 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "target": "ES5",
+        "module": "CommonJS",
+        "target": "ES6",
         "rootDir": "src",
+        "baseUrl": "src",
         "outDir": "build",
+        "sourceMap": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
+        "moduleResolution": "Node",
         "esModuleInterop": true,
         "removeComments": true
     },
+    "include": [
+        "src"
+    ],
     "exclude": [
         "node_modules"
-    ]
+    ],
+    "files": ["types.d.ts"]
 }

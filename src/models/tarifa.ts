@@ -9,24 +9,24 @@ export class CatTarifa{
     @PrimaryGeneratedColumn('increment')
     idTarifa:number;
 
-    @OneToOne(() => CatMedio)
-    @JoinColumn()
+    @OneToOne(() => CatMedio, {nullable:false, eager:true})
+    @JoinColumn({name:'idMedio', referencedColumnName:'idMedio'})
     Medio:CatMedio;
 
-    @OneToOne(() => CatEmpresa)
-    @JoinColumn()
+    @OneToOne(() => CatEmpresa, {nullable:false, eager:true})
+    @JoinColumn({name:'idEmpresa', referencedColumnName:'idEmpresa'})
     Empresa:CatEmpresa;
 
-    @OneToOne(() => CatTipoTarifa)
-    @JoinColumn()
+    @OneToOne(() => CatTipoTarifa, {nullable:false, eager:true})
+    @JoinColumn({name:'idTipoTarifa', referencedColumnName:'idTipoTarifa'})
     TipoTarifa:CatTipoTarifa;
 
-    @OneToOne(()=> CatTipoTarifaTemporada)
-    @JoinColumn()
+    @OneToOne(()=> CatTipoTarifaTemporada, {nullable:false, eager:true})
+    @JoinColumn({name:'idTipoTarifaTemporada', referencedColumnName:'idTipoTarifaTemporada'})
     TipoTarifaTemporada:CatTipoTarifaTemporada;
 
 
-    @Column({type:'integer', nullable:false})
+    @Column({type:'int', nullable:false})
     DescuentoMaximo:number;
 
     @Column({type:'varchar', length:4, nullable:false})
