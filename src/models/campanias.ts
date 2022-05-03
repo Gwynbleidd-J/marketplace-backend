@@ -9,19 +9,19 @@ export class CatCampanias{
     @PrimaryGeneratedColumn('increment')
     idCampanias:number;
 
-    @OneToOne(() => CatEmpresa, empresa => empresa.Campania, {nullable:false, eager:true})
+    @OneToOne(() => CatEmpresa, empresa => empresa.Campania, { nullable:true })
     @JoinColumn({name: 'idEmpresa', referencedColumnName:'idEmpresa'})
     Empresa:CatEmpresa;
 
-    @ManyToOne(() => CatProducto, producto => producto.Campania, {nullable:false, eager:true}) 
+    @ManyToOne(() => CatProducto, producto => producto.Campania, { nullable:true}) 
     @JoinColumn({name:'idProducto', referencedColumnName:'idProducto'})
     Producto:CatProducto;
 
-    @OneToOne(() => CatEstatus, estatus => estatus.Campania, {nullable:false, eager:true}) 
+    @OneToOne(() => CatEstatus, estatus => estatus.Campania, {nullable:true}) 
     @JoinColumn({name:'idEstatus', referencedColumnName:'idEstatus'})
     Estatus:CatEstatus;
 
-    @OneToOne(() => CatMedio, medio => medio.Campania, {nullable:false, eager:true})
+    @OneToOne(() => CatMedio, medio => medio.Campania, {nullable:true})
     @JoinColumn({name: 'idMedio', referencedColumnName:'idMedio'})
     Medio:CatMedio;
     

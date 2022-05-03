@@ -7,7 +7,7 @@ export class CatProducto{
     @PrimaryGeneratedColumn('increment')
     idProducto:number;
 
-    @OneToOne(() => CatPlantilla,{nullable:false, eager:true})
+    @OneToOne(() => CatPlantilla,{nullable:true})
     @JoinColumn({name:'idPlantilla', referencedColumnName:'idPlantilla'})
     plantilla:CatPlantilla;
 

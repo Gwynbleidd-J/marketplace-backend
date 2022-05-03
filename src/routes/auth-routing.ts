@@ -13,8 +13,8 @@ export class AuthRouting{
     }
 
     private routes():void{
-        this.router.post('/singup', this.authController.SingUp);
-        this.router.post('/singin', this.authController.SingIn);
-        this.router.get('/profile',TokenValidation, this.authController.Profile);
+        this.router.post('/register', this.authController.SingUp);
+        this.router.post('/login', this.authController.SingIn);
+        // this.router.get('/profile',TokenValidation,this.authController.Profile);
     }
 }

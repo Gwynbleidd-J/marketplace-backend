@@ -9,19 +9,19 @@ export class CatTarifa{
     @PrimaryGeneratedColumn('increment')
     idTarifa:number;
 
-    @OneToOne(() => CatMedio, {nullable:false, eager:true})
+    @OneToOne(() => CatMedio, {nullable:true})
     @JoinColumn({name:'idMedio', referencedColumnName:'idMedio'})
     Medio:CatMedio;
 
-    @OneToOne(() => CatEmpresa, {nullable:false, eager:true})
+    @OneToOne(() => CatEmpresa, {nullable:true})
     @JoinColumn({name:'idEmpresa', referencedColumnName:'idEmpresa'})
     Empresa:CatEmpresa;
 
-    @OneToOne(() => CatTipoTarifa, {nullable:false, eager:true})
+    @OneToOne(() => CatTipoTarifa, {nullable:true})
     @JoinColumn({name:'idTipoTarifa', referencedColumnName:'idTipoTarifa'})
     TipoTarifa:CatTipoTarifa;
 
-    @OneToOne(()=> CatTipoTarifaTemporada, {nullable:false, eager:true})
+    @OneToOne(()=> CatTipoTarifaTemporada, {nullable:true})
     @JoinColumn({name:'idTipoTarifaTemporada', referencedColumnName:'idTipoTarifaTemporada'})
     TipoTarifaTemporada:CatTipoTarifaTemporada;
 
@@ -37,4 +37,7 @@ export class CatTarifa{
 
     @Column({type:'varchar', length: 3, nullable:false})
     Canal:string;
+
+    @Column({type: 'int', nullable:true})
+    idRed:number
 }

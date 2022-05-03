@@ -1,8 +1,9 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Unique } from 'typeorm';
 import { CatEmpresa } from './empresa';
 import { CatTipoUsuario } from './tipo-usuario';
 import { CatEstatus } from './estatus';
 import { CatContacto } from './contacto';
+import { CatEncuesta } from './encuesta';
 import bcrypt  from "bcryptjs";
 
 @Entity()
@@ -10,23 +11,27 @@ export class LstUsuario{
     @PrimaryGeneratedColumn('increment')
     idUsuario:number;
 
-    @OneToOne(()=> CatTipoUsuario,{nullable:true, eager:true})
+    @OneToOne(()=> CatTipoUsuario,{nullable:true})
     @JoinColumn({name:'idTipoUsuario', referencedColumnName:'idTipoUsuario'})
-    TipoUsuario:CatTipoUsuario;
+    TipoUsuario:CatTipoUsuario; //Si es pyme o no se registra en base
 
-    @OneToOne(() => CatEmpresa, {nullable:true, eager:true})
+    @OneToOne(() => CatEmpresa, {nullable:true})
     @JoinColumn({name:'idEmpresa', referencedColumnName:'idEmpresa'})
-    Empresa:CatEmpresa;
+    Empresa:CatEmpresa; // todavia no se llega ahí
 
-    @OneToOne(() => CatEstatus, {nullable:true, eager:true})
+    @OneToOne(() => CatEstatus, {nullable:true})
     @JoinColumn({name:'idEstatus', referencedColumnName:'idEstatus'})
-    Estatus:CatEstatus
+    Estatus:CatEstatus // por si el usuario está activo
 
-    @ManyToOne(() => CatContacto, contacto => contacto.usuario, {nullable:true, eager:true})
-    @JoinColumn({name:'idContacto', referencedColumnName:'idContacto'})
+    @ManyToOne(() => CatContacto, contacto => contacto.usuario, {nullable:true})
+    @JoinColumn({name:'idContacto', referencedColumnName:'idContacto'}) //contacto que registro el usuario
     contacto:CatContacto;
 
-    @Column({type:'varchar', length:255, nullable:false})
+    @OneToMany(() => CatEncuesta, encuesta => encuesta.Usuario, {nullable: true})
+    @JoinColumn({name:'idEncuesta', referencedColumnName:'idEncuesta'})
+    Encuesta: LstUsuario[];
+
+    @Column({type:'varchar', length:255, nullable:false, unique: true})
     NombreUsuario:string;
 
     @Column({type:'varchar', length:255, nullable:false})

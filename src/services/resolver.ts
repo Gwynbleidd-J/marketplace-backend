@@ -13,7 +13,7 @@ export class Resolver {
         res.status(403).send({ status:403, message, data})
     }
 
-    public async notFound(res:Response, message:string, data:any = {}): Promise<void> {
+    public async notFound(res:Response, message?:string, data:any = {}): Promise<void> {
         res.status(404).send({ status: 404, message, data });
     }
 

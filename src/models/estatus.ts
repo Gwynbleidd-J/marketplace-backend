@@ -7,7 +7,7 @@ export class CatEstatus{
     @PrimaryGeneratedColumn('increment')
     idEstatus:number;
 
-    @OneToOne(() => CatMedio, medio => medio.Estatus)
+    @OneToOne(() => CatMedio, medio => medio.Estatus, {nullable:true})
     Medio:CatMedio;
 
     @Column({type:'varchar', length:30, nullable:false})

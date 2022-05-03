@@ -10,18 +10,18 @@ export class CatEmpresa{
     @PrimaryGeneratedColumn('increment')
     idEmpresa:number;
     
-    @OneToOne(() => CatTipoEmpresa, {nullable:false, eager:true})
+    @OneToOne(() => CatTipoEmpresa, {nullable:true})
     @JoinColumn({name:'idTipoEmpresa', referencedColumnName:'idTipoEmpresa'})
     TipoEmpresa:CatTipoEmpresa;
 
-    @OneToOne(() => CatDatosFiscales, {nullable:false, eager:true})
+    @OneToOne(() => CatDatosFiscales, {nullable:true})
     @JoinColumn({name:'idDatosFiscales', referencedColumnName:'idDatosFiscales'})
     DatosFiscales:CatDatosFiscales;
 
-    @OneToOne(() => CatCampanias, campania => campania.Empresa, {nullable:false})
+    @OneToOne(() => CatCampanias, campania => campania.Empresa, {nullable:true})
     Campania:CatCampanias;
 
-    @ManyToOne(() => CatDireccion, direccion => direccion.Empresa, {nullable:false})
+    @ManyToOne(() => CatDireccion, direccion => direccion.Empresa, {nullable:true})
     @JoinColumn({name:'idDireccion', referencedColumnName:'idDireccion'})
     Direccion:CatDireccion;
     
